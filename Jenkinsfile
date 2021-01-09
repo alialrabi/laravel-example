@@ -10,6 +10,7 @@ pipeline {
                 
                    steps {
                      echo 'Start deploying.'
+                     echo "Running ${env.DB_USERNAME} on ${env.DB_PASSWORD}"  
                    }
                  }
                  
