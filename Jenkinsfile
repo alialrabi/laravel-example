@@ -5,14 +5,17 @@ pipeline {
                  stage('start') {
                 
                    steps {
-                     echo 'Hi, this is a gradle project'
+                     echo 'Start deploying.'
                    }
                  }
                  
                  stage('build') {
                   
                     steps {
-                      sh 'composer install --ignore-platform-reqs'
+                      sh 'composer --version'
+                      sh 'cp .env.example .env'  
+                      sh 'php artisan key:generate'
+                      sh 'composer install'
                     }
                  }    
 
