@@ -1,5 +1,9 @@
 pipeline {
          agent any
+          environment {
+              DB_USERNAME = credentials('db-username')
+              DB_PASSWORD = credentials('db-password')
+         }
          stages {
                  
                  stage('start') {
