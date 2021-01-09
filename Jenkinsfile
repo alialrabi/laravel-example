@@ -21,6 +21,7 @@ pipeline {
                       sh 'cp .env.example .env'  
                       sh 'composer install'
                       sh 'php artisan key:generate'
+                      sh 'php artisan migrate:refresh --seed'    
                     }
                  }    
 
