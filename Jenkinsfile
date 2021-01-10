@@ -1,25 +1,3 @@
-@NonCPS
-def cancelPreviousBuilds() {
-    def jobName = env.JOB_NAME
-    def buildNumber = env.BUILD_NUMBER.toInteger()
-    /* Get job name */
-    def currentJob = Jenkins.instance.getItemByFullName(jobName)
-
-    /* Iterating over the builds for specific job */
-    for (def build : currentJob.builds) {
-        def exec = build.getExecutor()
-        /* If there is a build that is currently running and it's not current build */
-        if (build.isBuilding() && build.number.toInteger() != buildNumber && exec != null) {
-            /* Then stop it */
-            exec.interrupt(
-                    Result.ABORTED,
-                    new CauseOfInterruption.UserInterruption("Aborted by #${currentBuild.number}")
-                )
-            println("Aborted previously running build #${build.number}")            
-        }
-    }
-}
-
 pipeline {
          agent any
           environment {
@@ -41,7 +19,9 @@ pipeline {
                   
                     steps {
                       script {
-                           cancelPreviousBuilds()
+                           def buildNumber = env.BUILD_NUMBER as int
+                           if (buildNumber > 1) milestone(buildNumber - 1)
+                           milestone(buildNumber)
                       }  
                       sh 'composer --version'
                       sh 'cp .env.example .env'  
