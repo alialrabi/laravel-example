@@ -13,9 +13,15 @@ pipeline {
                          branch 'develop' 
                     } 
                     steps { 
-                     withEnv(['DB_USERNAME=aliali']) {
-                       sh "echo $DB_USERNAME" // prints newvalue
-                     }
+                  //   withEnv(['DB_USERNAME=aliali']) {
+                  //    sh "echo $DB_USERNAME" // prints newvalue
+                  //   }
+                    script {
+                        def db-username = credentials('db-username')
+                        withEnv(['DB_USERNAME=' + db-username]) {
+                        sh "echo $DB_USERNAME" // prints new1
+                    }
+                    }    
                    }   
                  }   
                  stage('start') { 
