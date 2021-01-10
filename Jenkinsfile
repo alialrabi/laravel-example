@@ -9,10 +9,10 @@ pipeline {
          }
          stages {
                 stage('set variables') {
-                   steps { 
-                     when {
+                    when {
                          branch 'develop' 
-                     }  
+                    } 
+                    steps { 
                      withEnv(['DB_USERNAME=aliali']) {
                        sh "echo $DB_USERNAME" // prints newvalue
                      }
