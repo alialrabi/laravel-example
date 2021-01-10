@@ -15,8 +15,8 @@ pipeline {
                     } 
                     steps { 
                        script {
-                            withEnv(["FOO=asd"]) {
-                              echo "FOO = ${env.FOO}"
+                            withEnv(["DB_USERNAME=asd"]) {
+                              echo "DB_USERNAME is = ${env.DB_USERNAME}"
                             }    
                            }
                        }    
