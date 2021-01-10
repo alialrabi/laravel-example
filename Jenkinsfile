@@ -14,7 +14,7 @@ pipeline {
                            def buildNumber = env.BUILD_NUMBER as int
                            if (buildNumber > 1) milestone(buildNumber - 1)
                            milestone(buildNumber)
-                         echo "${env.BUILD_NUMBER}"
+                           echo "${env.BUILD_NUMBER}"
                      }  
                      echo 'Start deploying.'
                      echo "Running ${env.DB_USERNAME} on ${env.DB_PASSWORD}"  
