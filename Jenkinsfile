@@ -8,7 +8,7 @@ pipeline {
               
          }
          stages {
-                stage('start') {
+                stage('set variables') {
                    when {
                         branch 'develop' 
                     }  
