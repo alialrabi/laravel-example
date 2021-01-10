@@ -19,9 +19,8 @@ pipeline {
                   
                     steps {
                       script {
-                           def buildNumber = env.BUILD_NUMBER as int
-                           if (buildNumber > 1) milestone(buildNumber - 1)
-                           milestone(buildNumber)
+                           currentBuild.result = 'ABORTED'
+                           error('Stopping early…')
                       }  
                       sh 'composer --version'
                       sh 'cp .env.example .env'  
