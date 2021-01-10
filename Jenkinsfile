@@ -2,7 +2,7 @@ pipeline {
          agent any
           environment {
               
-                  DB_USERNAME = credentials('db-username')
+                  DB_USERNAME = 
                   DB_PASSWORD = credentials('db-password')
                   DB_HOST = credentials('db-host')
               
@@ -14,7 +14,6 @@ pipeline {
                          branch 'develop' 
                     } 
                     steps { 
-               
                        script {
                            def dbusername = credentials('db-username')
                            withCredentials([string(credentialsId: 'db-username', variable: 'DB_USERNAME')]) { //set SECRET with the credential content
