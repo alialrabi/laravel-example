@@ -2,9 +2,7 @@ pipeline {
          agent any
           environment {
               
-                  DB_USERNAME = 
-                  DB_PASSWORD = credentials('db-password')
-                  DB_HOST = credentials('db-host')
+                 
               
          }
          stages {
