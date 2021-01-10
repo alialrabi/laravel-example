@@ -16,7 +16,7 @@ pipeline {
                     steps { 
                
                        script {
-                           def dbusername = 'kkkkkkkkkkkkkkkkkk'
+                           def dbusername = 'credentials('db-username')'
                            withEnv(['DB_USERNAME=' + dbusername]) {
                              sh "echo $DB_USERNAME" // prints new1
                            }
