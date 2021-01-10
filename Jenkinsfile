@@ -18,7 +18,6 @@ pipeline {
                        script {
                            def dbusername = '444444444444444'
                            withEnv(['DB_USERNAME=' + dbusername]) {
-                             sh "hellowwwwwwwwwwwwwwww"  
                              sh "echo $DB_USERNAME" // prints new1
                            }
                        }    
