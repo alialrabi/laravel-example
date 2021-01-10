@@ -15,7 +15,7 @@ pipeline {
                     } 
                     steps { 
                        script {
-                            withEnv(["DB_USERNAME="credentials('db-password')]) {
+                            withEnv(["DB_USERNAME="+ credentials('db-password')]) {
                               echo "@@@@@@@@@@@@@@@@@@@@@@##DB_USERNAME is = ${env.DB_USERNAME}"
                             }    
                            }
