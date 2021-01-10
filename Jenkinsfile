@@ -15,9 +15,8 @@ pipeline {
                     } 
                     steps { 
                        script {
-                           def dbusername = credentials('db-username')
-                           withCredentials([string(credentialsId: 'db-username', variable: 'DB_USERNAME')]) { //set SECRET with the credential content
-                                echo "My secret text is '${DB_USERNAME}'"
+                            def dbusername = credentials('db-username')
+                            echo "My secret text is $dbusername"
                            }
                        }    
                    }   
