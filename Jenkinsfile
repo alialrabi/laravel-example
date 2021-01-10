@@ -9,12 +9,14 @@ pipeline {
          }
          stages {
                 stage('set variables') {
-                   when {
-                        branch 'develop' 
-                    }  
-                    withEnv(['DB_USERNAME=aliali']) {
+                   steps { 
+                     when {
+                         branch 'develop' 
+                     }  
+                     withEnv(['DB_USERNAME=aliali']) {
                        sh "echo $DB_USERNAME" // prints newvalue
-                    }
+                     }
+                   }   
                  }   
                  stage('start') { 
                 
