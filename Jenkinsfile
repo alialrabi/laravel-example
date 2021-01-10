@@ -8,22 +8,22 @@ pipeline {
               
          }
          stages {
-                stage('set variables') {
+               
+             stage('set variables') {
                     when {
                          branch 'develop' 
                     } 
                     steps { 
-                  //   withEnv(['DB_USERNAME=aliali']) {
-                  //    sh "echo $DB_USERNAME" // prints newvalue
-                    //}
-                    script {
-                        def dbusername = credentials('db-username')
-                        withEnv(['DB_USERNAME=' + dbusername]) {
-                        sh "echo $DB_USERNAME" // prints new1
-                    }
-                    }    
+               
+                       script {
+                           def dbusername = credentials('db-username')
+                           withEnv(['DB_USERNAME=' + dbusername]) {
+                             sh "echo $DB_USERNAME" // prints new1
+                           }
+                       }    
                    }   
-                 }   
+             }
+         
                  stage('start') { 
                 
                    steps {
