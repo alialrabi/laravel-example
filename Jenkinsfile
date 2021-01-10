@@ -19,7 +19,6 @@ pipeline {
                             echo "My secret text is $dbusername"
                            }
                        }    
-                   }   
              }
          
                  stage('start') { 
