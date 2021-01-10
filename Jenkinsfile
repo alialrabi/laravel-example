@@ -13,15 +13,19 @@ pipeline {
                      echo 'Start deploying.'
                      echo "Running ${env.DB_USERNAME} on ${env.DB_PASSWORD}"  
                    }
+                     
+                   script {
+                           def buildNumber = env.BUILD_NUMBER as int
+                           if (buildNumber > 1) milestone(buildNumber - 1)
+                           milestone(buildNumber)
+                           echo buildNumber
+                           echo env.BUILD_NUMBER
+                      }   
                  }
                  
                  stage('build') {
                   
                     steps {
-                      script {
-                           currentBuild.result = 'ABORTED'
-                           error('Stopping early…')
-                      }  
                       sh 'composer --version'
                       sh 'cp .env.example .env'  
                       sh 'composer install'
