@@ -2,7 +2,7 @@ pipeline {
          agent any
           environment {
               
-                  DBUSERNAME = credentials('db-username')
+                  DB-USERNAME = credentials('db-username')
                   DB_PASSWORD = credentials('db-password')
                   DB_HOST = credentials('db-host')
               
@@ -16,10 +16,10 @@ pipeline {
                     steps { 
                
                        script {
-                           def dbusername = 'credentials('db-username')'
-                           withEnv(['DBUSERNAME=' + dbusername]) {
+                           def dbusername = '444444444444444'
+                           withEnv(['DB-USERNAME=' + dbusername]) {
                              sh "hellowwwwwwwwwwwwwwww"  
-                             sh "echo $DBUSERNAME" // prints new1
+                             sh "echo $DB-USERNAME" // prints new1
                            }
                        }    
                    }   
