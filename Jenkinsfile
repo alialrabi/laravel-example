@@ -1,7 +1,7 @@
 pipeline {
          agent any
           environment {
-            
+                  DB_USERNAME = credentials('db-username')
                   DB_PASSWORD = credentials('db-password')
                   DB_HOST = credentials('db-host')
               
