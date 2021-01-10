@@ -1,17 +1,22 @@
 pipeline {
          agent any
           environment {
-              when {
-                branch 'develop' 
-              }
+              
                   DB_USERNAME = credentials('db-username')
                   DB_PASSWORD = credentials('db-password')
                   DB_HOST = credentials('db-host')
               
          }
          stages {
-                 
-                 stage('start') {
+                stage('start') {
+                   when {
+                        branch 'develop' 
+                    }  
+                    withEnv(['DB_USERNAME=credentials('db-username')']) {
+                       sh "echo $DB_USERNAME" // prints newvalue
+                    }
+                 }   
+                 stage('start') { 
                 
                    steps {
                      script {
