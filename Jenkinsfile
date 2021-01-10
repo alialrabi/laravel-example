@@ -1,9 +1,12 @@
 pipeline {
          agent any
           environment {
-             DB_USERNAME = credentials('db-username')
-             DB_PASSWORD = credentials('db-password')
-             DB_HOST = credentials('db-host')
+              when {
+                branch 'develop' 
+                  DB_USERNAME = credentials('db-username')
+                  DB_PASSWORD = credentials('db-password')
+                  DB_HOST = credentials('db-host')
+              }
          }
          stages {
                  
@@ -26,6 +29,7 @@ pipeline {
                  stage('build') {
                   
                     steps {
+                      sh 'php --version'  
                       sh 'composer --version'
                       sh 'cp .env.example .env'  
                       sh 'composer install'
