@@ -20,9 +20,6 @@ pipeline {
                            withCredentials([string(credentialsId: 'db-username', variable: 'DB_USERNAME')]) { //set SECRET with the credential content
                                 echo "My secret text is '${DB_USERNAME}'"
                            }
-                           withEnv(['DB_USERNAME=' + dbusername]) {
-                             sh "echo $DB_USERNAME" // prints new1
-                           }
                        }    
                    }   
              }
