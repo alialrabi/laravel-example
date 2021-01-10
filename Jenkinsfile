@@ -1,8 +1,9 @@
 pipeline {
          agent any
           environment {
-              DB_USERNAME = credentials('db-username')
-              DB_PASSWORD = credentials('db-password')
+             DB_USERNAME = credentials('db-username')
+             DB_PASSWORD = credentials('db-password')
+             DB_HOST = credentials('db-host')
          }
          stages {
                  
@@ -21,7 +22,6 @@ pipeline {
                       sh 'cp .env.example .env'  
                       sh 'composer install'
                       sh 'php artisan key:generate'
-                      sh 'php artisan migrate:refresh --seed'    
                     }
                  }    
 
