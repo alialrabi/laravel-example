@@ -15,9 +15,9 @@ pipeline {
                     } 
                     steps { 
                        script {
-                            def dbusername = credentials('db-username')
-                            DB_USERNAME = dbusername
-                            echo "My secret text is $dbusername"
+                            withEnv(["FOO=asd"]) {
+                              echo "FOO = ${env.FOO}"
+                            }    
                            }
                        }    
              }
