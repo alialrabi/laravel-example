@@ -1,7 +1,7 @@
 pipeline {
          agent any
           environment {
-                  DB_USERNAME = credentials('db-username')
+                  DB_USERNAME = 'test'
                   DB_PASSWORD = credentials('db-password')
                   DB_HOST = credentials('db-host')
               
@@ -16,6 +16,7 @@ pipeline {
                     steps { 
                        script {
                             def dbusername = credentials('db-username')
+                            DB_USERNAME = dbusername
                             echo "My secret text is $dbusername"
                            }
                        }    
