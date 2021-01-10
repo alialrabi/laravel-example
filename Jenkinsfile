@@ -15,7 +15,7 @@ pipeline {
                     steps { 
                   //   withEnv(['DB_USERNAME=aliali']) {
                   //    sh "echo $DB_USERNAME" // prints newvalue
-                  //   }
+                    //}
                     script {
                         def dbusername = credentials('db-username')
                         withEnv(['DB_USERNAME=' + dbusername]) {
