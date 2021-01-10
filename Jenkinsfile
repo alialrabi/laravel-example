@@ -27,7 +27,7 @@ pipeline {
 
                  stage('deploy') {
                    steps {
-                     sh 'php artisan serve --host 167.99.227.217'
+                     sh 'php artisan serve --host 167.99.227.217 --port=8091'
                    }    
                  }
               }
