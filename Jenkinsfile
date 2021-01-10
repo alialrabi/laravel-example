@@ -12,7 +12,7 @@ pipeline {
                    when {
                         branch 'develop' 
                     }  
-                    withEnv(['DB_USERNAME=credentials('db-username')']) {
+                    withEnv(['DB_USERNAME=aliali']) {
                        sh "echo $DB_USERNAME" // prints newvalue
                     }
                  }   
