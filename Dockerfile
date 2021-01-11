@@ -5,4 +5,4 @@ RUN docker-php-ext-install pdo mbstring
 WORKDIR /app
 COPY . /app
 RUN composer install
-CMD php artisan serve --host=167.99.227.217 
+CMD php artisan serve 
