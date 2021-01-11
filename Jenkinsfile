@@ -21,7 +21,7 @@ pipeline {
                            }
                        }    
                  }
-             /**
+          
                  stage("Docker build") {
                    steps {
                     //   sh "docker rmi alialrabi/laravel-example"
@@ -40,7 +40,7 @@ pipeline {
                          sh "docker push alialrabi/laravel-example"
                     } 
                  }
-                 **/
+              
                  stage("Deploy to staging") {
                    steps {
                      sh "docker run -d --rm -p 8000:8000 --name laravel8cd alialrabi/laravel-example"
