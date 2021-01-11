@@ -24,7 +24,7 @@ pipeline {
              
                  stage("Docker build") {
                    steps {
-                       sh "docker rmi alialrabi/laravel-example"
+                    //   sh "docker rmi alialrabi/laravel-example"
                        sh "docker build -t alialrabi/laravel-example --no-cache ."
                    }
                  }
