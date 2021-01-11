@@ -1,7 +1,7 @@
-FROM php:5.5-apache
+FROM php:7.3-fpm
+WORKDIR /app
+COPY . /app
+RUN composer install
 
-RUN docker-php-ext-install pdo_mysql
-RUN a2enmod rewrite
-
-ADD . /var/www
-ADD ./public /var/www/html
+CMD php artisan serve --host=167.99.227.217 --port=8000
+EXPOSE 8000
