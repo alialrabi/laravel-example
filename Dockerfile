@@ -6,4 +6,3 @@ WORKDIR /app
 COPY . /app
 RUN composer install
 CMD php artisan serve --host=167.99.227.217 
-EXPOSE 8181
