@@ -43,7 +43,7 @@ pipeline {
               
                  stage("Deploy to staging") {
                    steps {
-                     sh "docker run -d -p 167.99.227.217:8000:8000 --name alialrabi/laravel-example"
+                     sh "docker run -p 167.99.227.217:8000 alialrabi/laravel-example"
                    }
                  }
          /**
