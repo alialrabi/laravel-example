@@ -9,7 +9,7 @@ pipeline {
       
          stages {
                
-             stage('set variables') {
+                 stage('set variables') {
                     when {
                          branch 'develop' 
                     } 
@@ -20,7 +20,27 @@ pipeline {
                             }    
                            }
                        }    
-             }
+                 }
+             
+                 stage("Docker build") {
+                   steps {
+                       sh "docker rmi alialrabi/laravel-example"
+                       sh "docker build -t alialrabi/laravel-example --no-cache ."
+                   }
+                 }
+                 
+                 stage("Docker push") {
+                    environment {
+                          DOCKER_USERNAME = credentials("docker-user")
+                          DOCKER_PASSWORD = credentials("docker-password")
+                       }
+              
+                    steps {
+                         sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
+                         sh "docker push alialrabi/laravel-example"
+                    } 
+                 }
+              
          
                  stage('start') { 
                 
