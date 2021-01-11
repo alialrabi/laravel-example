@@ -1,7 +1,7 @@
 pipeline {
          agent any
           environment {
-                  DB_USERNAME = 'test'
+                  DB_USERNAME = credentials('db-password')
                   DB_PASSWORD = credentials('db-password')
                   DB_HOST = credentials('db-host')
               
@@ -40,6 +40,11 @@ pipeline {
                          sh "docker push alialrabi/laravel-example"
                     } 
                  }
+                 
+                 stage("Deploy to staging") {
+                   steps {
+                     sh "docker run -d --rm -p 80:80 --name laravel8cd alialrabi/laravel-example"
+                 }
               
          
                  stage('start') { 
@@ -57,7 +62,7 @@ pipeline {
                      
                     
                  }
-                 
+                 /**
                  stage('build') {
                   
                     steps {
@@ -69,18 +74,18 @@ pipeline {
                       sh 'php artisan migrate:refresh --seed' 
                     }
                  }
-             
-                 stage('test') {
+                **/
+                 //stage('test') {
                   
-                    steps {
-                      sh 'php artisan test'
-                    }
-                 }
+                 //   steps {
+                  //    sh 'php artisan test'
+                   // }
+                 //}
 
-                 stage('deploy') {
-                   steps {
-                     sh 'php artisan serve --host 167.99.227.217 --port=8091'
-                   }    
-                 }
+             //    stage('deploy') {
+             //      steps {
+             //        sh 'php artisan serve --host 167.99.227.217 --port=8091'
+              //     }    
+               //  }
               }
 }
