@@ -43,8 +43,13 @@ pipeline {
               
                  stage("Deploy to staging") {
                    steps {
-                     sh "docker run -d --rm -p 8099:8099 alialrabi/laravel-example"
+                     sh "docker run -p 8099:8099 --name laravel8cd alialrabi/laravel-example"
                    }
+                   post {
+                    always {
+                      sh "docker stop laravel8cd"
+                }
+            }  
                  }
          /**
                  stage('start') { 
