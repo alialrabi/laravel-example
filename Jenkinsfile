@@ -43,7 +43,7 @@ pipeline {
               
                  stage("Deploy to staging") {
                    steps {
-                     sh "docker run -p 8099:8099 --name laravel8cd alialrabi/laravel-example"
+                     sh "docker run -p 8099:8099 --name laravel8cd1 alialrabi/laravel-example"
                    }
                    post {
                     always {
