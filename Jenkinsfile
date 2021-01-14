@@ -1,5 +1,7 @@
 pipeline {
-         agent any
+          agent {
+             label 'docker' 
+          }
           environment {
                   DB_USERNAME = credentials('db-password')
                   DB_PASSWORD = credentials('db-password')
