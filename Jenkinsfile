@@ -8,9 +8,9 @@ pipeline {
                   DB_HOST = credentials('db-host')
               
          }
-      /**
+     
          stages {
-               
+     /**          
                  stage('set variables') {
                     when {
                          branch 'develop' 
@@ -99,4 +99,4 @@ pipeline {
                  }
               }
 }
-}
+
