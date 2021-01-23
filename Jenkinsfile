@@ -8,7 +8,7 @@ pipeline {
                   DB_HOST = credentials('db-host')
               
          }
-      
+      /**
          stages {
                
                  stage('set variables') {
@@ -53,7 +53,10 @@ pipeline {
                 }
             }  
                  }
-         /**
+             
+             
+             
+         **/
                  stage('start') { 
                 
                    steps {
@@ -81,18 +84,18 @@ pipeline {
                       sh 'php artisan migrate:refresh --seed' 
                     }
                  }
-                **/
-                 //stage('test') {
-                  
-                 //   steps {
-                  //    sh 'php artisan test'
-                   // }
-                 //}
 
-             //    stage('deploy') {
-             //      steps {
-             //        sh 'php artisan serve --host 167.99.227.217 --port=8091'
-              //     }    
-               //  }
+                stage('test') {
+                  
+                    steps {
+                      sh 'php artisan test'
+                    }
+                 }
+
+                 stage('deploy') {
+                   steps {
+                     sh 'php artisan serve --host 167.99.227.217 --port=8091'
+                   }    
+                 }
               }
 }
