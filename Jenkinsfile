@@ -7,19 +7,18 @@ pipeline {
         stage('start') {
             
             when {
-                branch 'develop'
+                branch 'dev'
             }
                 
             steps {
-                  echo 'Start deploying.'
-                  echo "Running ${env.DB_USERNAME} on ${env.DB_PASSWORD}"  
+                  echo 'Start deploying .'
                   }
             }
                  
             stage('build') {
                      
                   when {
-                        branch 'develop'
+                        branch 'dev'
                   }
                   
                   steps {
@@ -36,7 +35,7 @@ pipeline {
             stage('test') {
                 
                  when {
-                      branch 'develop'
+                      branch 'dev'
                  }
                   
                  steps {
@@ -47,7 +46,7 @@ pipeline {
             stage('deploy') {
 
                  when {
-                    branch 'develop'
+                    branch 'dev'
                  }
                 
                  steps {
@@ -60,10 +59,10 @@ pipeline {
             }
       
        
-            stage('Initialize'){
+            stage('Initialize Docker'){
                 
                  when {
-                    branch 'kube'
+                    branch 'uat'
                  }
             
                  steps {
@@ -81,7 +80,7 @@ pipeline {
             stage('Checkout Source') {
          
                  when {
-                    branch 'kube'
+                    branch 'uat'
                  }
   
                  steps {
@@ -92,7 +91,7 @@ pipeline {
             stage("Build image") {
           
                  when {
-                   branch 'kube'
+                   branch 'uat'
                  }
                 
                 steps {
@@ -104,7 +103,7 @@ pipeline {
 
             stage("Push image") {
                  when {
-                    branch 'kube'
+                    branch 'uat'
                  }
             
                  steps {
@@ -118,14 +117,26 @@ pipeline {
                  }
             }
     
-            stage('Deploy App') {
+            stage('Deploy Uat') {
                 
                 when {
-                    branch 'kube'
+                    branch 'uat'
                 }
      
                 steps {
-                   echo "Done Ali"
+                   echo "Done Uat"
+                   kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "mykubeconfig") 
+                 }
+            }
+        
+            stage('Deploy Prod') {
+                
+                when {
+                    branch 'uat'
+                }
+     
+                steps {
+                   echo "Done Production"
                    kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "mykubeconfig") 
                  }
             }
