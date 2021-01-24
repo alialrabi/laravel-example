@@ -132,7 +132,7 @@ pipeline {
             stage('Deploy Prod') {
                 
                 when {
-                    branch 'master'
+                    branch 'prod'
                 }
      
                 steps {
