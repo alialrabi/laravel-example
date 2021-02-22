@@ -63,9 +63,6 @@ pipeline {
     
             stage('Deploy Uat') {
                 
-                when {
-                    branch 'uat'
-                }
      
                 steps {
                    echo "Done Uat"
