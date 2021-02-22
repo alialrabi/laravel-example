@@ -2,109 +2,53 @@ pipeline {
 
     agent any
     
+   
+    
     stages {
-     
-        stage('start') {
-            
-            when {
-                branch 'dev'
-            }
-                
-            steps {
-                  echo 'Start deploying .'
-                  }
-            }
-                 
-            stage('build') {
-                     
-                  when {
-                        branch 'dev'
-                  }
-                  
-                  steps {
-                  
-                      sh 'php --version'  
-                      sh 'composer --version'
-                      sh 'cp .env.example .env'  
-                      sh 'composer install'
-                      sh 'php artisan key:generate'
-                      sh 'php artisan migrate:refresh --seed'
-                  }
-            }  
-             
-            stage('test') {
-                
-                 when {
-                      branch 'dev'
-                 }
-                  
-                 steps {
-                      sh 'php artisan test'
-                 }
-            }
 
-            stage('deploy') {
-
-                 when {
-                    branch 'dev'
-                 }
-                
+             stage('Initialize Docker'){
                  steps {
-                 
-                     sh 'export SERVER_PORT="8090"'
-                     sh 'php artisan serve --host 167.99.227.217'
-                   
-                 }    
-                 
-            }
-      
-       
-            stage('Initialize Docker'){
-                
-                 when {
-                    branch 'uat'
-                 }
-            
-                 steps {
-                
                       script {
                            def docker = tool 'whaledocker'
                            echo "${docker}"
-                           echo "${env.PATH}"   
+                           echo "${env.PATH}"
                            env.PATH = "${docker}/bin:${env.PATH}"
-                           echo "${env.PATH}"  
-                      }   
+                           echo "${env.PATH}"
+                      }
                  }
             }
-    
+        
             stage('Checkout Source') {
-         
-                 when {
-                    branch 'uat'
-                 }
-  
+
                  steps {
-                     git url:'https://github.com/alialrabi/laravel-example.git', branch:'kube'
+                     git url:'https://github.com/dabrahamsen904/coverwhale.git', branch: 'uat', credentialsId: 'github'
                  }
             }
     
             stage("Build image") {
           
-                 when {
-                   branch 'uat'
-                 }
-                
                 steps {
                      script {
-                       myapp = docker.build("alialrabi/laravel-example:${env.BUILD_ID}")
+                       myapp = docker.build("alialrabi/coverwhale:${env.BUILD_ID}")
                      }
                 }
             }
+        
+     
+            stage("Run Test") {
+          
+                steps {
+                     script {
+                          docker.image("alialrabi/coverwhale:${env.BUILD_ID}").inside {
+                         //   sh 'composer install'  
+                          //  sh 'php artisan test'
+                          }
+                     }
+                }
+            }
+        
 
             stage("Push image") {
-                 when {
-                    branch 'uat'
-                 }
             
                  steps {
                     
@@ -125,19 +69,19 @@ pipeline {
      
                 steps {
                    echo "Done Uat"
-                   kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "mykubeconfig") 
+                   kubernetesDeploy(configs: "deploymentuat.yaml", kubeconfigId: "mykubeconfig") 
                  }
             }
         
             stage('Deploy Prod') {
                 
                 when {
-                    branch 'master'
+                    branch 'prod'
                 }
      
                 steps {
                    echo "Done Production"
-                   kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "mykubeconfig") 
+                   kubernetesDeploy(configs: "deploymentprod.yaml", kubeconfigId: "mykubeconfig")
                  }
             }
 
