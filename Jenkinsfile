@@ -69,21 +69,10 @@ pipeline {
      
                 steps {
                    echo "Done Uat"
-                   kubernetesDeploy(configs: "deploymentuat.yaml", kubeconfigId: "mykubeconfig") 
+                      sh "helm upgrade --install --force --set name=${NAME} --set image.tag=${VERSION} --set domain=${DOMAIN} ${NAME} ./helm"
                  }
             }
-        
-            stage('Deploy Prod') {
-                
-                when {
-                    branch 'prod'
-                }
-     
-                steps {
-                   echo "Done Production"
-                   kubernetesDeploy(configs: "deploymentprod.yaml", kubeconfigId: "mykubeconfig")
-                 }
-            }
+ 
 
   }
     
