@@ -65,13 +65,14 @@ pipeline {
                 
      
                 steps {
-                    script {
-                   echo "Done Uat"
+                    container('helm') {
+                    echo "Done Uat"
                       sh "helm upgrade --install --force ./helm"
                  }
                 }
             }
  
+        
 
   }
     
