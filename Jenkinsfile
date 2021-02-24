@@ -1,9 +1,6 @@
 pipeline {
     
-    agent {
-      label "jenkins-helm"
-    }
-
+    agent any
     
     stages {
 
