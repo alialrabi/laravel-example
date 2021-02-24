@@ -1,7 +1,10 @@
 pipeline {
 
    agent any
-
+   podTemplate(label: 'jenkins-pipeline', containers: [
+    containerTemplate(name: 'maven', image: 'maven:3.5.0-jdk-8', command: 'cat', ttyEnabled: true),
+    containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:v2.6.1', command: 'cat', ttyEnabled: true),
+])
     
     stages {
 
