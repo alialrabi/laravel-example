@@ -65,7 +65,7 @@ pipeline {
                 steps {
                      script {
                     echo "Done Uat"
-                      sh "helm upgrade --install --force ./helm"
+                      sh "helm upgrade --install --force"
                  }
                 }
             }
