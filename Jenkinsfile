@@ -64,8 +64,10 @@ pipeline {
      
                 steps {
                        script {
+                           echo "11111111111111111111111111111111111111111"
                   container('helm') {
-                   sh "helm upgrade --install --force ./helm"
+                      echo "222222222222222222222222222222222222"
+                      sh "helm upgrade --install"
                      }
                    }
                 }
