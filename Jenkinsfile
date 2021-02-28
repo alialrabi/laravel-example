@@ -1,7 +1,5 @@
 pipeline {
-     agent {
-        docker { image 'lachlanevenson/k8s-helm:v3.1.1' }
-    }
+     agent any
     
     stages {
 
