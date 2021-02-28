@@ -65,7 +65,7 @@ pipeline {
                 steps {
                        script {
                   container('helm') {
-                 
+                   sh "helm upgrade --install --force ./helm"
                      }
                    }
                 }
