@@ -50,7 +50,7 @@ pipeline {
                 agent {
                     kubernetes {
                     label "helm"
-                    inheritFrom parentLabel
+                    inheritFrom "helm"
                     yaml """
                     apiVersion: v1
                     kind: Pod
