@@ -48,9 +48,9 @@ pipeline {
             stage('Deploy Uat') {
                 
                 steps {
-                   container('helm') { 
+                   container('helm1') { 
                    echo "Done Uat"
-                   sh "helm version"
+                   sh "helm2 version"
                    }    
                  }
             }
