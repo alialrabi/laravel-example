@@ -49,16 +49,12 @@ pipeline {
                 
              agent {
                kubernetes {
-                label 'helm'
-                yaml """\
-                    spec:
-                    containers:
-                    - name: helm
-                        image: lachlanevenson/k8s-helm:v3.1.1
-                        command:
-                        - cat
-                        tty: true
-                    """.stripIndent()
+                     containerTemplate {
+                       name 'helm'
+                       image 'lachlanevenson/k8s-helm:v3.1.1'
+                       ttyEnabled true
+                       command 'cat'
+                  }
                 }
              }
                 
