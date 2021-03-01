@@ -2,7 +2,8 @@ pipeline {
     
     agent {
         kubernetes {
-            defaultContainer 'jnlkkp'
+            defaultContainer 'jnlp'
+            yamlFile 'build.yaml'
         }
     }
     
@@ -30,9 +31,9 @@ pipeline {
             stage("Build image") {
           
                 steps {
-                     script {
-                       myapp = docker.build("alialrabi/coverwhale:${env.BUILD_ID}")
-                     }
+                     container('docker') {
+                    sh "docker build -t alialrabi/coverwhale:${env.BUILD_ID} ."
+                }
                 }
             }
         
@@ -60,6 +61,17 @@ pipeline {
                               myapp.push("${env.BUILD_ID}")
                          }
                      }
+                     
+                     
+                     
+                     
+                       container('docker') {
+                    withDockerRegistry([credentialsId: "dockerhub", url: ""]) {
+                        sh "docker push alialrabi/coverwhale:${env.BUILD_ID}"
+                    }
+                }
+                     
+                     
                  }
             }
     
