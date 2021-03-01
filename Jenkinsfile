@@ -50,7 +50,7 @@ pipeline {
                 steps {
                    container('helm1') { 
                    echo "Done Uat"
-                   sh "helm2 version"
+                 //  sh "helm2 version"
                    }    
                  }
             }
