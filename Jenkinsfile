@@ -61,7 +61,7 @@ pipeline {
                 steps {
                    container('helm') { 
                    echo "Done Uat"
-                    sh "helm --debug upgrade --install kamus soluto/kamus ./helm"
+                    sh "helm upgrade newdeploybyhelm /root/existing2helm ./helm"
 
                    }    
                  }
