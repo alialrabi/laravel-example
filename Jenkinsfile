@@ -61,7 +61,8 @@ pipeline {
                 steps {
                    container('helm') { 
                    echo "Done Uat"
-                    sh "helm upgrade newdeploybyhelm /root/existing2helm ./helm"
+                     sh "helm upgrade --install --force --set name=myname --set image.tag=myversion --set domain=mydomain myname ./helm"
+
 
                    }    
                  }
