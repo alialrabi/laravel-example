@@ -48,18 +48,22 @@ pipeline {
             stage('Deploy Uat') {
                 
                 agent {
-            kubernetes {
-                label 'helm'
-                yaml """\
+                    kubernetes {
+                    label "helm"
+                    inheritFrom parentLabel
+                    yaml """
+                    apiVersion: v1
+                    kind: Pod
+                    metadata:
+                      namespace: build
+                      labels:
+                        project: helm
                     spec:
-                    containers:
-                    - name: helm
-                        image: lachlanevenson/k8s-helm:v3.1.1
-                        command:
-                        - cat
-                        tty: true
-                    """.stripIndent()
-            }
+                      containers:
+                        - name: helm
+                          image: lachlanevenson/k8s-helm:v3.1.1
+                    """
+                }
         }
                 
                 steps {
