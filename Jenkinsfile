@@ -47,10 +47,25 @@ pipeline {
     
             stage('Deploy Uat') {
                 
+                agent {
+            kubernetes {
+                label 'helm'
+                yaml """\
+                    spec:
+                    containers:
+                    - name: helm
+                        image: lachlanevenson/k8s-helm:v3.1.1
+                        command:
+                        - cat
+                        tty: true
+                    """.stripIndent()
+            }
+        }
+                
                 steps {
-                   container('helm1') { 
+                   container('helm') { 
                    echo "Done Uat"
-                     sh "helm1 version"
+                     sh "helm version"
                    }    
                  }
             }
