@@ -61,7 +61,7 @@ pipeline {
                 steps {
                    container('helm') { 
                    echo "Done Uat"
-                     sh "helm install full-cover ./helm"
+                     sh "helm upgrade full-cover ./helm"
 
 
                    }    
