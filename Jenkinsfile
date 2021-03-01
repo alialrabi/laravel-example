@@ -1,12 +1,7 @@
 pipeline {
-    
-    agent {
-        kubernetes {
-            defaultContainer 'jnlp'
-            yamlFile 'build.yaml'
-        }
-    }
-    
+
+    agent any
+        
     stages {
 
              stage('Initialize Docker'){
@@ -24,32 +19,18 @@ pipeline {
             stage('Checkout Source') {
 
                  steps {
-                     git url:'https://github.com/alialrabi/laravel-example.git', branch: 'uat', credentialsId: 'github'
+                     git url:'https://github.com/dabrahamsen904/coverwhale.git', branch: 'uat', credentialsId: 'github'
                  }
             }
     
             stage("Build image") {
           
                 steps {
-                     container('docker') {
-                    sh "docker build -t alialrabi/coverwhale:${env.BUILD_ID} ."
-                }
-                }
-            }
-        
-     
-            stage("Run Test") {
-          
-                steps {
                      script {
-                          docker.image("alialrabi/coverwhale:${env.BUILD_ID}").inside {
-                         //   sh 'composer install'  
-                          //  sh 'php artisan test'
-                          }
+                       myapp = docker.build("alialrabi/coverwhale:${env.BUILD_ID}")
                      }
                 }
             }
-        
 
             stage("Push image") {
             
@@ -61,34 +42,17 @@ pipeline {
                               myapp.push("${env.BUILD_ID}")
                          }
                      }
-                     
-                     
-                     
-                     
-                       container('docker') {
-                    withDockerRegistry([credentialsId: "dockerhub", url: ""]) {
-                        sh "docker push alialrabi/coverwhale:${env.BUILD_ID}"
-                    }
-                }
-                     
-                     
                  }
             }
     
             stage('Deploy Uat') {
                 
-     
                 steps {
-                       script {
-                           echo "11111111111111111111111111111111111111111"
-                //  container('helm') {
-                  //    echo "222222222222222222222222222222222222"
-                   //  }
-                   }
-                }
+                   echo "Done Uat"
+                   sh "helm version"
+                 }
             }
- 
-        
+
 
   }
     
