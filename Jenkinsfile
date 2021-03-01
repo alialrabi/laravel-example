@@ -2,7 +2,7 @@ pipeline {
      agent any
     
     tools {
-        helm 'lachlanevenson/k8s-helm:v3.1.1' 
+        maven 'lachlanevenson/k8s-helm:v3.1.1' 
     }
     
     stages {
