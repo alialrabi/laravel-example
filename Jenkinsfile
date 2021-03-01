@@ -2,7 +2,7 @@ pipeline {
     
     agent {
         kubernetes {
-            defaultContainer 'helm10'
+            defaultContainer 'helm'
         }
     }
     
@@ -69,10 +69,9 @@ pipeline {
                 steps {
                        script {
                            echo "11111111111111111111111111111111111111111"
-                  container('helm') {
-                      echo "222222222222222222222222222222222222"
-                      sh "/usr/local/bin/helm upgrade --dry-run --debug --install"
-                     }
+                //  container('helm') {
+                  //    echo "222222222222222222222222222222222222"
+                   //  }
                    }
                 }
             }
