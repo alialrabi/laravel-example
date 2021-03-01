@@ -71,7 +71,7 @@ pipeline {
                            echo "11111111111111111111111111111111111111111"
                   container('helm') {
                       echo "222222222222222222222222222222222222"
-                      sh "helm version"
+                     // sh "helm version"
                      }
                    }
                 }
