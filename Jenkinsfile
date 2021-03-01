@@ -1,6 +1,10 @@
 pipeline {
-     agent any
-
+    
+    agent {
+        kubernetes {
+            defaultContainer 'helm'
+        }
+    }
     
     stages {
 
