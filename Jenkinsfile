@@ -19,7 +19,7 @@ pipeline {
             stage('Checkout Source') {
 
                  steps {
-                     git url:'https://github.com/dabrahamsen904/coverwhale.git', branch: 'uat', credentialsId: 'github'
+                     git url:'https://github.com/alialrabi/laravel-example.git', branch: 'uat', credentialsId: 'github'
                  }
             }
     
