@@ -1,9 +1,6 @@
 pipeline {
      agent any
-    
-    tools {
-        maven 'lachlanevenson/k8s-helm:v3.1.1' 
-    }
+
     
     stages {
 
@@ -70,7 +67,7 @@ pipeline {
                            echo "11111111111111111111111111111111111111111"
                   container('helm') {
                       echo "222222222222222222222222222222222222"
-                      sh "helm version"
+                      sh "/usr/local/bin/helm upgrade --dry-run --debug --install"
                      }
                    }
                 }
