@@ -61,7 +61,7 @@ pipeline {
                 steps {
                    container('helm') { 
                    echo "Done Uat"
-                    sh "helm upgrade example stable/example --install --force --set name=example --set image.tag=last ./helm"
+                    sh "helm --debug upgrade --install kamus soluto/kamus ./helm"
 
                    }    
                  }
