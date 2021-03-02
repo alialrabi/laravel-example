@@ -60,7 +60,9 @@ pipeline {
                 
                 steps {
                    container('helm') { 
-                   echo "Done Uat"
+                     echo "Done Uat"
+                     echo "1111111111111111111111111111111111111111111111111111"
+                     sh "kubectl get all"  
                      sh "helm upgrade full-cover ./helm"
 
 
