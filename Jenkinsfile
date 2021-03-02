@@ -62,7 +62,8 @@ pipeline {
                    container('helm') { 
                      echo "Done Uat"
                      echo "1111111111111111111111111111111111111111111111111111"
-                     sh "kubectl get all"  
+                     sh "helm version"  
+                     sh "helm list --all --all-namespaces"  
                      sh "helm upgrade full-cover ./helm"
 
 
