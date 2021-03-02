@@ -17,24 +17,8 @@ fullnameOverride: ""
 rbac:
   # Specifies whether RBAC resources should be created
   create: true
-
-  # Specifies whether cluster-admin ClusterRole will be used for dashboard
-  # ServiceAccount (NOT RECOMMENDED).
-  clusterAdminRole: true
-
-  # Start in ReadOnly mode.
-  # Only dashboard-related Secrets and ConfigMaps will still be available for writing.
-  #
-  # Turn OFF clusterAdminRole to use clusterReadOnlyRole.
-  #
-  # The basic idea of the clusterReadOnlyRole comparing to the clusterAdminRole
-  # is not to hide all the secrets and sensitive data but more
-  # to avoid accidental changes in the cluster outside the standard CI/CD.
-  #
-  # Same as for clusterAdminRole, it is NOT RECOMMENDED to use this version in production.
-  # Instead you should review the role and remove all potentially sensitive parts such as
-  # access to persistentvolumes, pods/log etc.
-  clusterReadOnlyRole: true
+  # Specifies whether PSP resources should be created
+  pspEnabled: false
   
 serviceAccount:
   # Specifies whether a service account should be created
@@ -45,6 +29,15 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# If create is `false` the Helm Operator will be restricted to the namespace
+# where it is deployed, and no ClusterRole or ClusterRoleBinding will be created.
+# Additionally, the kubeconfig default context will be set to that namespace.
+clusterRole:
+  create: true
+  # The name of a cluster role to bind to; if not set and create is
+  # true, a name based on fullname is generated
+  name:
+  
 podAnnotations: {}
 
 podSecurityContext: {}
