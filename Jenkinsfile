@@ -63,8 +63,8 @@ pipeline {
                      echo "Done Uat"
                      echo "1111111111111111111111111111111111111111111111111111"
                      sh "helm version"  
-                     sh "helm list --all --all-namespaces"  
-                     sh "helm upgrade full-cover ./helm"
+                    // sh "helm list --all --all-namespaces"  
+                     sh "helm install covering ./helm"
 
 
                    }    
