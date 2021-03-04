@@ -23,3 +23,15 @@ roleRef:
   kind: Role
   name: {{ include "coverwhale.fullname" . }}
   apiGroup: ""
+  
+  
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "coverwhale.fullname" . }}secret-reader
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "watch", "list"]
