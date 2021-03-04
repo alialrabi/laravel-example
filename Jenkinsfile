@@ -50,7 +50,7 @@ pipeline {
             
                 
                 steps {
-                   container('helm') { 
+                //   container('helm') { 
                      echo "Done Uat"
                      echo "1111111111111111111111111111111111111111111111111111"
                    //  sh "helm version"  
@@ -58,7 +58,7 @@ pipeline {
                     // sh "helm install covering ./helm"
                      sh "ansible-playbook  playbook.yml" 
 
-                   }    
+                 //  }    
                  }
             }
 
