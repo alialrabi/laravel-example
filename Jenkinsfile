@@ -47,18 +47,28 @@ pipeline {
     
             stage('Deploy Uat') {
                 
-            
+                  agent {
+               kubernetes {
+                     containerTemplate {
+                       name 'helm'
+                       image 'lachlanevenson/k8s-helm:v3.1.1'
+                       ttyEnabled true
+                       command 'cat'
+                  }
+                }
+             }
+   
                 
                 steps {
-                //   container('helm') { 
+                   container('helm') { 
                      echo "Done Uat"
                      echo "1111111111111111111111111111111111111111111111111111"
-                   //  sh "helm version"  
+                     sh "helm version"  
                     // sh "helm list --all --all-namespaces"  
                     // sh "helm install covering ./helm"
-                     sh "ansible-playbook  playbook.yml" 
+                     //sh "ansible-playbook  playbook.yml" 
 
-                 //  }    
+                   }    
                  }
             }
 
