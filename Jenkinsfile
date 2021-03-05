@@ -49,7 +49,7 @@ pipeline {
                 
                   agent {
                kubernetes {
-                     defaultContainer 'jnlp'
+                     defaultContainer 'jnlp200'
                      yamlFile 'build.yaml'
                 }
              }
