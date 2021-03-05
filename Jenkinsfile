@@ -60,7 +60,7 @@ pipeline {
                      echo "1111111111111111111111111111111111111111111111111111"
                      sh "helm version"  
                    //  sh "helm list --all --all-namespaces"  
-                     sh "helm upgrade --install covering ./helm"
+                     sh "helm upgrade --install -n=default covering ./helm"
                      //sh "ansible-playbook  playbook.yml" 
 
                    }    
