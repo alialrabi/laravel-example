@@ -9,8 +9,8 @@ spec:
     image: lachlanevenson/k8s-helm:v3.1.1
     command:
     - cat
-      tty: true
   serviceAccountName: default     
+
 ---
 
 apiVersion: rbac.authorization.k8s.io/v1
