@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    some-label: pod
+    some-label: pod-reader
 spec:
   containers:
     - name: helm
