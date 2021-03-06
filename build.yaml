@@ -5,6 +5,7 @@ metadata:
     some-label: pod-reader
 spec:
   containers:
+    serviceAccountName: default
     - name: helm
       image: lachlanevenson/k8s-helm:v3.1.1
       command:
