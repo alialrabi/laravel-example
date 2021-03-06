@@ -35,6 +35,7 @@ serviceAccountAgent:
 rbac:
   # Specifies whether RBAC resources should be created
   create: true
+  clusterAdminRole: true
 
 podAnnotations: {}
 
