@@ -9,5 +9,4 @@ spec:
     image: lachlanevenson/k8s-helm:v3.1.1
     command:
     - cat
-  serviceAccountName: default     
 
