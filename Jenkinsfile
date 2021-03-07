@@ -49,8 +49,14 @@ pipeline {
                 
               agent {
                       kubernetes {
-                       defaultContainer 'jnlp'
-                      yamlFile 'build.yaml'
+                      // defaultContainer 'jnlp'
+                     // yamlFile 'build.yaml'
+                        containerTemplate {
+                          name 'helm'
+                          image 'lachlanevenson/k8s-helm:v3.1.1'
+                          ttyEnabled true
+                          command 'cat'
+                       }  
                  }
                }
      
