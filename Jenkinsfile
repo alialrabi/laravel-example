@@ -52,16 +52,11 @@ pipeline {
                 steps {
                     script {
                      echo "Done Uat"
-                     echo "1111111111111111111111111111111111111111111111111111"
                      sh "curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3"
                      sh "chmod 700 get_helm.sh"
                      sh "./get_helm.sh"
                      sh "helm version"  
-                     sh "helm list"  
-                     sh "helm repo add bitnami https://charts.bitnami.com/bitnami"
-                     sh "helm install my-release bitnami/mysql"  
-                     sh "helm upgrade --install  aliali ./helm"
-                     //sh "ansible-playbook  playbook.yml" 
+                     sh "helm upgrade --install  coverwhale ./helm"
                     }
                    
                  }
