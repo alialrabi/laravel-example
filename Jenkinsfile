@@ -58,7 +58,7 @@ pipeline {
                      sh "./get_helm.sh"
                      sh "helm version"  
                      sh "helm list"  
-                     sh "helm upgrade --install --namespace=default aliali ./helm"
+                     sh "helm upgrade --install  aliali ./helm"
                      //sh "ansible-playbook  playbook.yml" 
                     }
                    
