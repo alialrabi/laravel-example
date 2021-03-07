@@ -47,11 +47,6 @@ pipeline {
     
             stage('Deploy Uat') {
                 
-                  agent {
-               kubernetes {
-                     yamlFile 'build.yaml'
-                }
-             }
    
                 
                 steps {
