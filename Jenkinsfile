@@ -47,7 +47,13 @@ pipeline {
     
             stage('Deploy Uat') {
                 
-   
+              agent {
+                      kubernetes {
+                       defaultContainer 'jnlp'
+                      yamlFile 'build.yaml'
+                 }
+               }
+     
                 
                 steps {
                    container('helm') { 
