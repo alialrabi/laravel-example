@@ -58,10 +58,8 @@ pipeline {
                      sh "./get_helm.sh"
                      sh "helm version"  
                      sh "helm list"  
-                     sh "helm repo add jenkins https://charts.jenkins.io"
-                     sh "helm search repo jenkins"
-                     sh "helm install jenkins jenkins/jenkins"  
-                     sh "helm install happy-panda bitnami/wordpress"   
+                     sh "helm repo add bitnami https://charts.bitnami.com/bitnami"
+                     sh "helm install my-release bitnami/mysql"  
                      sh "helm upgrade --install  aliali ./helm"
                      //sh "ansible-playbook  playbook.yml" 
                     }
