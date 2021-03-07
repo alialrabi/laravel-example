@@ -10,7 +10,7 @@ spec:
     command:
     - cat
     tty: true
-  serviceAccountName: jenkins 
+  serviceAccountName: jenkins1 
 
 ---
 apiVersion: v1
