@@ -3,6 +3,7 @@ kind: Pod
 metadata:
   labels:
     some-label: default
+    namespace: default
 spec:
   containers:
   - name: helm
