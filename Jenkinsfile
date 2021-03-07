@@ -50,7 +50,7 @@ pipeline {
              
                 
                 steps {
-                   container('helm') { 
+                  
                      echo "Done Uat"
                      echo "1111111111111111111111111111111111111111111111111111"
                      sh "curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3"
@@ -61,7 +61,7 @@ pipeline {
                      sh "helm upgrade --install -n=default covering ./helm"
                      //sh "ansible-playbook  playbook.yml" 
 
-                   }    
+                   
                  }
             }
 
