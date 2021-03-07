@@ -47,24 +47,15 @@ pipeline {
     
             stage('Deploy Uat') {
                 
-              agent {
-                      kubernetes {
-                      // defaultContainer 'jnlp'
-                     // yamlFile 'build.yaml'
-                        containerTemplate {
-                          name 'helm'
-                          image 'lachlanevenson/k8s-helm:v3.1.1'
-                          ttyEnabled true
-                          command 'cat'
-                       }  
-                 }
-               }
-     
+             
                 
                 steps {
                    container('helm') { 
                      echo "Done Uat"
                      echo "1111111111111111111111111111111111111111111111111111"
+                     sh "curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3"
+                     sh "chmod 700 get_helm.sh"
+                     sh "./get_helm.sh"
                      sh "helm version"  
                      sh "helm list --all --all-namespaces"  
                      sh "helm upgrade --install -n=default covering ./helm"
