@@ -58,7 +58,7 @@ pipeline {
                      sh "./get_helm.sh"
                      sh "helm version"  
                      sh "helm list"  
-                     sh "helm upgrade --install --namespace=kube-system covering ./helm"
+                     sh "helm upgrade --install --namespace=default covering ./helm"
                      //sh "ansible-playbook  playbook.yml" 
                     }
                    
