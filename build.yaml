@@ -65,6 +65,7 @@ rules:
   - ""
   resources:
   - nodes
+  - secrets
   verbs:
   - get
   - list
